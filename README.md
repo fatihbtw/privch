@@ -1,13 +1,13 @@
 # Privch
 
-Privch (**Priv**ate + **T**witch) is a privacy-focused alternative front-end to Twitch, forked from [Twineo](https://codeberg.org/CloudyyUw/twineo) (itself inspired by [Invidious](https://github.com/iv-org/invidious) and [Nitter](https://github.com/zedeus/nitter)). The server proxies every request to Twitch, so no JavaScript fingerprinting or IP tracking by Twitch happens while you watch.
+Privch (**Priv**ate + **T**witch) is a privacy-focused, ad-free alternative front-end for Twitch — a self-hosted Twitch proxy that lets you watch Twitch streams without ads, without a Twitch account, and without Twitch tracking your IP or browser fingerprint. Forked from [Twineo](https://codeberg.org/CloudyyUw/twineo) (itself inspired by [Invidious](https://github.com/iv-org/invidious) and [Nitter](https://github.com/zedeus/nitter)).
 
 **Demo:** [privch-production.up.railway.app](https://privch-production.up.railway.app)
 
 ## Features
 
 - **No trackers** — all media and API requests go through the server, not your browser directly to Twitch.
-- **Ad-blocking** — Twitch's stitched-in ad segments are stripped from the HLS playlist server-side before they ever reach the player.
+- **Twitch ad blocker built in** — Twitch's stitched-in ad segments are stripped from the HLS playlist server-side, so streams play with no ads, no pre-rolls, and no mid-rolls.
 - **Follow channels without an account** — favorites are stored in `localStorage`, with JSON export/import, no sign-up required.
 - **Adjustable stream quality** — picks from the qualities actually available in the stream (including native high-bitrate "Source"), remembers your preference.
 - **Resizable chat panel** — drag to resize the chat box to whatever size fits your layout.
