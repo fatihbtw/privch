@@ -2,6 +2,8 @@
 
 Privch (**Priv**ate + **T**witch) is a privacy-focused alternative front-end to Twitch, forked from [Twineo](https://codeberg.org/CloudyyUw/twineo) (itself inspired by [Invidious](https://github.com/iv-org/invidious) and [Nitter](https://github.com/zedeus/nitter)). The server proxies every request to Twitch, so no JavaScript fingerprinting or IP tracking by Twitch happens while you watch.
 
+**Demo:** [privch-production.up.railway.app](https://privch-production.up.railway.app)
+
 ## Features
 
 - **No trackers** — all media and API requests go through the server, not your browser directly to Twitch.
