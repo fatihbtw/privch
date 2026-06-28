@@ -1,11 +1,26 @@
 import { Component, Show } from 'solid-js';
-import { FiMenu, FiHome, FiHeart, FiSettings } from 'solid-icons/fi';
+import {
+    FiMenu,
+    FiHome,
+    FiHeart,
+    FiSettings,
+    FiGithub,
+} from 'solid-icons/fi';
 import { useNavigate } from '@solidjs/router';
 
 const navBar: Component<{ isHome: boolean }> = ({ isHome }) => {
     const navigate = useNavigate();
     return (
         <>
+            <a
+                class="btn btn-ghost btn-circle fixed bottom-4 right-4 z-40"
+                href="https://github.com/fatihbtw/privch"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="GitHub"
+            >
+                <FiGithub size={22} />
+            </a>
             <Show when={isHome == true}>
                 <div class="navbar backdrop-blur-md">
                     <div class="navbar-start">

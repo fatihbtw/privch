@@ -10,6 +10,7 @@ import {
 import { useSearchParams, useParams } from '@solidjs/router';
 import axios from 'axios';
 import Hls from 'hls.js';
+import { FiMaximize, FiMinimize } from 'solid-icons/fi';
 import Nav from './components/nav';
 import FavBtn from './components/favCh';
 import LiveMetadata from './components/liveMetadata';
@@ -51,6 +52,7 @@ const Stream: Component = () => {
             (QualityLevelOption & { name: string; levelIndex: number })[]
         >([]),
         [currentQuality, setCurrentQuality] = createSignal(0),
+        [theaterMode, setTheaterMode] = createSignal(false),
         queryLimit = 100,
         queryString =
             '?' +
@@ -401,25 +403,60 @@ const Stream: Component = () => {
                     </div>
                 </Show>
                 <Show when={isLive() == true}>
-                    <div class="container md:py-5">
+                    <div
+                        class={
+                            theaterMode()
+                                ? 'w-full px-2 md:py-5'
+                                : 'container md:py-5'
+                        }
+                    >
                         <div class="flex justify-center items-start gap-2">
-                            <div class="hidden lg:block w-1/5">
-                                <StreamSuggestions
-                                    username={params.username}
-                                />
-                            </div>
-                            <div class="flex flex-col md:flex-row md:gap-2">
-                                <div class="w-full md:w-3/4 md:h-auto">
+                            <Show when={!theaterMode()}>
+                                <div class="hidden lg:block w-1/5">
+                                    <StreamSuggestions
+                                        username={params.username}
+                                    />
+                                </div>
+                            </Show>
+                            <div
+                                class={
+                                    theaterMode()
+                                        ? 'flex flex-col w-full gap-2'
+                                        : 'flex flex-col md:flex-row md:gap-2'
+                                }
+                            >
+                                <div
+                                    class={
+                                        theaterMode()
+                                            ? 'w-full'
+                                            : 'w-full md:w-3/4 md:h-auto'
+                                    }
+                                >
                                     <video ref={videoRef} controls />
-                                    <Show when={qualityLevels().length > 0}>
-                                        <div class="flex justify-end mt-1">
+                                    <div class="flex justify-end items-center gap-2 mt-1">
+                                        <button
+                                            class="btn btn-sm btn-ghost"
+                                            title="Theatermodus"
+                                            onclick={() =>
+                                                setTheaterMode(!theaterMode())
+                                            }
+                                        >
+                                            {theaterMode() ? (
+                                                <FiMinimize />
+                                            ) : (
+                                                <FiMaximize />
+                                            )}
+                                        </button>
+                                        <Show
+                                            when={qualityLevels().length > 0}
+                                        >
                                             <QualitySelector
                                                 levels={qualityLevels()}
                                                 current={currentQuality()}
                                                 onSelect={selectQuality}
                                             />
-                                        </div>
-                                    </Show>
+                                        </Show>
+                                    </div>
                                     <div class="p-1">
                                         <LiveMetadata
                                             title={streamMetadata()?.title!}
@@ -432,7 +469,13 @@ const Stream: Component = () => {
                                         />
                                     </div>
                                 </div>
-                                <div class="w-full md:w-2/4">
+                                <div
+                                    class={
+                                        theaterMode()
+                                            ? 'w-full'
+                                            : 'w-full md:w-2/4'
+                                    }
+                                >
                                     <div
                                         class="border border-base-200 rounded-md shadow-md p-4 flex flex-col resize overflow-auto"
                                         style={{
