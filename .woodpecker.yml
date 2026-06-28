@@ -1,0 +1,32 @@
+pipeline:
+    build:
+        image: node:20-slim
+        commands:
+            - npm i
+            - npm run dev:check
+            - npm run build:all
+        when:
+            path:
+                exclude:
+                    - deno/*
+                    - docs/*
+                    - templates/*
+                    - '*.example'
+                    - '*.md'
+    docker:
+        image: woodpeckerci/plugin-docker-buildx
+        settings:
+            registry: codeberg.org
+            tags:
+                - latest
+            platforms: linux/amd64,linux/arm64
+            repo: codeberg.org/cloudyyuw/twineo
+            username: ${CI_REPO_OWNER}
+            password:
+                from_secret: cb_token
+        when:
+            branch: main
+            path:
+                exclude:
+                    - deno/*
+                    - docs/*

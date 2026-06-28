@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:type" content="website" />
+
+        <% if (it.invalid == true) { %>
+        <title>Privch - Clip</title>
+        <meta name="title" content="Privch - Clip" />
+        <meta property="og:title" content="Privch - Clip" />
+        <% } else { %>
+        <title>Privch - Clip <%= it.metadata.title %></title>
+        <meta name="title" content="Privch - Clip <%= it.metadata.title %>" />
+        <meta
+            property="og:title"
+            content="Privch - Clip <%= it.metadata.title %>"
+        />
+        <% if(it.base_url !== undefined) { %>
+        <meta name="twitter:card" content="player" />
+        <meta property="og:video" content="<%= it.base_url %><%= it.src %>" />
+        <meta
+            name="twitter:player:stream"
+            content="<%= it.base_url %><%= it.src %>"
+        />
+        <meta property="og:url" content="<%= it.base_url %><%= it.src %>" />
+        <meta property="og:video" content="<%= it.base_url %><%= it.src %>" />
+        <meta
+            property="og:video:secure_url"
+            content="<%= it.base_url %><%= it.src %>"
+        />
+        <meta property="og:video:type" content="video/mp4" />
+        <meta name="twitter:player:stream:content_type" content="video/mp4" />
+        <% } %> <% } %>
+        <link rel="stylesheet" href="/styles.min.css" />
+        <link
+            rel="stylesheet"
+            media="screen"
+            href="/poppins.css"
+            type="text/css"
+        />
+    </head>
+    <body>
+        <% if (it.invalid == true) { %>
+        <div class="container max-auto my-auto px-5 py-10">
+            <div class="border border-base-200 rounded-lg p-6 mt-3 ml-5">
+                <h1 class="font-semibold text-2xl">Not found</h1>
+                <p>Clip not found.</p>
+            </div>
+        </div>
+        <% } else { %>
+        <div class="container max-auto my-auto px-5 py-10">
+            <div class="flex justify-center">
+                <div class="rounded-md w-auto sm:w-1/2">
+                    <video
+                        class="h-auto w-auto"
+                        controls
+                        src="<%= it.src %>"
+                    ></video>
+                    <div>
+                        <div>
+                            <span class="text-sm italic" id="date"></span>
+                        </div>
+                        <h3 id="title" class="text-xl">
+                            <%= it.metadata.title %>
+                        </h3>
+                        <div class="text-secondary">
+                            <%= it.metadata.game %>
+                        </div>
+                        <div>
+                            <span>By <%= it.metadata.author %></span>
+                            <span><%= it.metadata.views %> views</span>
+                        </div>
+
+                        <div class="flex flex-row">
+                            <a href="/<%= it.username %>?home=true">
+                                <div>
+                                    <img
+                                        class="w-8 rounded-full"
+                                        id="avatar"
+                                        src="/api/urlproxy?url=<%= it.metadata.avatar %>"
+                                    />
+                                </div>
+                            </a>
+                            <a href="/<%= it.username %>?home=true"
+                                ><span class="ml-1"><%= it.username %></span></a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const date = Date.parse('<%= it.metadata.date %>') - Date.now(),
+                sec = Math.abs(Math.floor(date / 1000)),
+                min = Math.abs(Math.floor(sec / 60)),
+                hours = Math.abs(Math.floor(min / 60)),
+                days = Math.abs(Math.floor(hours / 24));
+
+            document.getElementById('date').innerText = `${days} days, ${
+                hours % 24
+            } hours, ${min % 60} minutes, and ${sec % 60} seconds ago`;
+        </script>
+        <% } %>
+        <footer
+            class="footer footer-center p-4 bg-base-300 text-base-content fixed-footer"
+        >
+            <div>
+                <p>
+                    Privch Version <%= it.appversion %> -
+                    <a
+                        class="text-blue-400"
+                        href="https://github.com/fatihbtw/privch"
+                        >Source</a
+                    >
+                </p>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+# The first request to make
+# Returns a accessToken type object
+query PlaybackAccessToken_Template(
+    $login: String!
+    $isLive: Boolean!
+    $vodID: ID!
+    $isVod: Boolean!
+    $playerType: String!
+) {
+    streamPlaybackAccessToken(
+        channelName: $login
+        params: {
+            platform: "web"
+            playerBackend: "mediaplayer"
+            playerType: $playerType
+        }
+    ) @include(if: $isLive) {
+        value
+        signature
+        __typename
+    }
+    videoPlaybackAccessToken(
+        id: $vodID
+        params: {
+            platform: "web"
+            playerBackend: "mediaplayer"
+            playerType: $playerType
+        }
+    ) @include(if: $isVod) {
+        value
+        signature
+        __typename
+    }
+}
+
+# Fetch view count
+# Require the streamer user id
+# accessToken -> streamPlaybackAccessToken -> value -> channel_id
+query UseViewCount {
+    user(id: "id") {
+        stream {
+            id
+            viewersCount
+            __typename
+        }
+    }
+}

@@ -1,0 +1,10 @@
+node_modules/
+build/
+public/
+docs/
+templates/
+front/dist/
+deno/
+pnpm-lock.yaml
+package-lock.json
+*.lock

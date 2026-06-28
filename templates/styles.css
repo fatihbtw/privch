@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Poppins';
+    font-weight: normal;
+    font-style: normal;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
+
+.search-icon::after {
+    content: url('/iconamoon_search.svg');
+    display: inline-flex;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+    height: 1.5em;
+    width: 1.5em;
+}
