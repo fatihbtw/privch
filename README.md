@@ -49,7 +49,7 @@ docker compose up -d
 
 (see [docker-compose.yml](docker-compose.yml) — pulls `ghcr.io/fatihbtw/privch:latest`)
 
-The image inherits this repo's visibility on GHCR. Since the repo is private, pulling it elsewhere requires `docker login ghcr.io` with a token that has `read:packages` — or make the package public from its GitHub settings page if you want anonymous pulls.
+The repo and image are public, so `docker compose up -d` pulls anonymously — no `docker login` needed.
 
 Or build it yourself:
 
