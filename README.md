@@ -10,6 +10,7 @@ Privch (**Priv**ate + **T**witch) is a privacy-focused alternative front-end to 
 - **Adjustable stream quality** — picks from the qualities actually available in the stream (including native high-bitrate "Source"), remembers your preference.
 - **Resizable chat panel** — drag to resize the chat box to whatever size fits your layout.
 - **Channel suggestions** — see other live channels in the same category as the one you're watching, with live viewer counts.
+- **Theater mode** — widen the video and move chat below it, like YouTube.
 - **Live chat** — proxied via WebSocket, no separate Twitch login needed.
 - **Open-source** — AGPLv3, inspect, modify, and self-host freely.
 
@@ -37,6 +38,18 @@ The server listens on port `3000`. Optional environment variables (see `.env.exa
 - `INSTANCE_URL` — base URL used for embedded clip links.
 
 ### Docker
+
+A prebuilt image is published automatically on every push to `main` via GitHub Actions:
+
+```bash
+docker compose up -d
+```
+
+(see [docker-compose.yml](docker-compose.yml) — pulls `ghcr.io/fatihbtw/privch:latest`)
+
+The image inherits this repo's visibility on GHCR. Since the repo is private, pulling it elsewhere requires `docker login ghcr.io` with a token that has `read:packages` — or make the package public from its GitHub settings page if you want anonymous pulls.
+
+Or build it yourself:
 
 ```bash
 docker build -t privch .
