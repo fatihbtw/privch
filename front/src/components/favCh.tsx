@@ -1,6 +1,6 @@
 import { Component, createSignal } from 'solid-js';
 import { FiHeart } from 'solid-icons/fi';
-import { TbHeartBroken } from 'solid-icons/tb';
+import { TbFillHeartBroken } from 'solid-icons/tb';
 
 const favBtn: Component<{ username: string }> = ({ username }) => {
     const [favChs, setFavChs] = createSignal<string[]>([]);
@@ -36,7 +36,7 @@ const favBtn: Component<{ username: string }> = ({ username }) => {
                 onclick={() => addOrRemoveFav(username.toLowerCase())}
             >
                 {favChs().includes(username.toLowerCase()) ? (
-                    <TbHeartBroken />
+                    <TbFillHeartBroken />
                 ) : (
                     <FiHeart />
                 )}
