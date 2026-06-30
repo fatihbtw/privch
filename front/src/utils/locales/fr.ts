@@ -56,6 +56,9 @@ export default {
     'explore.title': 'Explorer',
     'explore.unavailable':
         "Les streams tendance ne sont pas disponibles pour le moment.",
+    'explore.refresh': 'Actualiser',
+    'explore.categories': 'Catégories',
+    'explore.allCategories': 'Tout',
 
     'stream.videos': 'Vidéos',
     'stream.clips': 'Clips',

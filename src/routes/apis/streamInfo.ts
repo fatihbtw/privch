@@ -79,10 +79,12 @@ export default {
             }
         );
         // Trending streams (Explore page)
+        // Twitch's GQL `streams(first: N)` caps out at 30 - higher values
+        // error out with a GraphQL validation error.
         app.get('/api/trending', async (req: Request, res: Response) => {
             const limit = Math.min(
                 Math.max(Number(req.query.limit) || 20, 1),
-                50
+                30
             );
             const trending = await fetchTrendingStreams(limit);
 

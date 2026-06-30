@@ -55,6 +55,9 @@ export default {
 
     'explore.title': 'Keşfet',
     'explore.unavailable': 'Trend yayınlar şu anda kullanılamıyor.',
+    'explore.refresh': 'Yenile',
+    'explore.categories': 'Kategoriler',
+    'explore.allCategories': 'Tümü',
 
     'stream.videos': 'Videolar',
     'stream.clips': 'Klipler',

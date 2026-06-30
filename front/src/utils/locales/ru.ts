@@ -55,6 +55,9 @@ export default {
 
     'explore.title': 'Обзор',
     'explore.unavailable': 'Популярные стримы сейчас недоступны.',
+    'explore.refresh': 'Обновить',
+    'explore.categories': 'Категории',
+    'explore.allCategories': 'Все',
 
     'stream.videos': 'Видео',
     'stream.clips': 'Клипы',
