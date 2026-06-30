@@ -19,6 +19,7 @@ import {
 import Nav from './components/nav';
 import { BiSolidDownload, BiRegularX } from 'solid-icons/bi';
 import genericResponseObject from '../../src/types/genericResponseObject';
+import { applyStoredVolume } from './utils/playerVolume';
 
 const DownloadVods = lazy(() => import('./components/downloadVod'));
 
@@ -68,11 +69,18 @@ const Vods: Component = () => {
             };
 
             hlsInstance.attachMedia(videoRef);
+            applyStoredVolume(videoRef);
 
             hlsInstance.on(Hls.Events.MEDIA_ATTACHED, () =>
                 hlsInstance.loadSource(streamUrl)
             );
-            hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => videoRef.play());
+            hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
+                const speed = parseFloat(
+                    localStorage.getItem('privch_playback_speed') || '1'
+                );
+                videoRef.playbackRate = Number.isNaN(speed) ? 1 : speed;
+                videoRef.play();
+            });
             hlsInstance.on(Hls.Events.ERROR, function (_, data) {
                 if (data.fatal) {
                     switch (data.type) {

@@ -4,6 +4,7 @@ import {
     fetchCategoryInfo,
     fetchSuggestedChannels,
     fetchTitle,
+    fetchTrendingStreams,
     fetchViewCount,
 } from '../../utils/fetchStreamInfo';
 import { fetchStreamerInfo } from '../../utils/fetchStreamerInfo';
@@ -77,6 +78,20 @@ export default {
                 }
             }
         );
+        // Trending streams (Explore page)
+        app.get('/api/trending', async (req: Request, res: Response) => {
+            const limit = Math.min(
+                Math.max(Number(req.query.limit) || 20, 1),
+                50
+            );
+            const trending = await fetchTrendingStreams(limit);
+
+            if (trending.valid == false)
+                return res.status(400).json({ invalid: true });
+
+            res.setHeader('Cache-Control', 'max-age=60');
+            res.json({ invalid: false, streams: trending.data });
+        });
         // Streamer info
         app.get('/api/streamer/:username', async (req, res) => {
             const { username } = req.params,

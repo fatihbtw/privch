@@ -25,6 +25,7 @@ import {
     vodsResponse,
 } from './utils/types';
 import VodsContainer from './components/vodsContainer';
+import { applyStoredVolume } from './utils/playerVolume';
 
 const ClipsContainer = lazy(() => import('./components/clipsContainer')),
     StreamChat = lazy(() => import('./components/streamChat'));
@@ -53,6 +54,9 @@ const Stream: Component = () => {
         >([]),
         [currentQuality, setCurrentQuality] = createSignal(0),
         [theaterMode, setTheaterMode] = createSignal(false),
+        audioOnly = localStorage.getItem('privch_audio_only') === 'true',
+        showSuggestions =
+            localStorage.getItem('privch_show_suggestions') !== 'false',
         queryLimit = 100,
         queryString =
             '?' +
@@ -98,6 +102,17 @@ const Stream: Component = () => {
             };
 
             hlsInstance.attachMedia(videoRef);
+            applyStoredVolume(videoRef);
+
+            // ponytail: Media Session hints help mobile browsers keep
+            // audio-only playback alive in the background; full reliable
+            // backgrounding would need a native wrapper.
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.metadata = new MediaMetadata({
+                    title: params.username,
+                    artist: 'Twineo',
+                });
+            }
 
             hlsInstance.on(Hls.Events.MEDIA_ATTACHED, () =>
                 hlsInstance.loadSource(streamUrl)
@@ -411,7 +426,7 @@ const Stream: Component = () => {
                         }
                     >
                         <div class="flex justify-center items-start gap-2">
-                            <Show when={!theaterMode()}>
+                            <Show when={!theaterMode() && showSuggestions}>
                                 <div class="hidden lg:block w-1/5">
                                     <StreamSuggestions
                                         username={params.username}
@@ -432,7 +447,19 @@ const Stream: Component = () => {
                                             : 'w-full md:w-3/4 md:h-auto'
                                     }
                                 >
-                                    <video ref={videoRef} controls />
+                                    <Show when={!audioOnly}>
+                                        <video ref={videoRef} controls />
+                                    </Show>
+                                    <Show when={audioOnly}>
+                                        <audio
+                                            ref={(el) =>
+                                                (videoRef =
+                                                    el as unknown as HTMLVideoElement)
+                                            }
+                                            controls
+                                            class="w-full"
+                                        />
+                                    </Show>
                                     <div class="flex justify-end items-center gap-2 mt-1">
                                         <button
                                             class="btn btn-sm btn-ghost"

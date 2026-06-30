@@ -214,6 +214,83 @@ export async function fetchSuggestedChannels(
     }
 }
 
+export async function fetchTrendingStreams(limit: number): Promise<{
+    valid: boolean;
+    data?: {
+        login: string;
+        displayName: string;
+        avatar: string;
+        thumbnail: string;
+        viewers: number;
+        title: string;
+        game: string | null;
+    }[];
+}> {
+    try {
+        // ponytail: root `streams` field mirrors the already-working
+        // `game(name).streams` query used by fetchSuggestedChannels above.
+        // Twitch's directory schema is undocumented/reverse-engineered, so
+        // this is the same bet, just unfiltered by game - verify against
+        // the live API, this is the part most likely to need a follow-up.
+        const req = await axios.post(
+            'https://gql.twitch.tv/gql',
+            {
+                query: `query ExploreTrending($limit: Int!) {
+                    streams(first: $limit) {
+                        edges {
+                            node {
+                                title
+                                viewersCount
+                                previewImageURL(width: 320, height: 180)
+                                broadcaster {
+                                    login
+                                    displayName
+                                    profileImageURL(width: 70)
+                                }
+                                game {
+                                    displayName
+                                }
+                            }
+                        }
+                    }
+                }`,
+                variables: { limit },
+            },
+            {
+                headers: {
+                    'User-Agent': userAgent,
+                    Referer: 'https://www.twitch.tv/',
+                    Origin: 'https://www.twitch.tv/',
+                    'Client-ID': clientId,
+                },
+                validateStatus: () => true,
+            }
+        );
+
+        if (
+            req.status !== 200 ||
+            req.data.errors != null ||
+            req.data.data?.streams == null
+        )
+            return { valid: false };
+
+        const channels = req.data.data.streams.edges.map((edge: any) => ({
+            login: edge.node.broadcaster.login,
+            displayName: edge.node.broadcaster.displayName,
+            avatar: edge.node.broadcaster.profileImageURL,
+            thumbnail: edge.node.previewImageURL,
+            viewers: edge.node.viewersCount,
+            title: edge.node.title,
+            game: edge.node.game?.displayName ?? null,
+        }));
+
+        return { valid: true, data: channels };
+    } catch (err) {
+        console.log(err);
+        return { valid: false };
+    }
+}
+
 export async function fetchTitle(username: string): Promise<{
     valid: boolean;
     data?: string;
