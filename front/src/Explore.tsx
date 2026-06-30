@@ -44,9 +44,13 @@ const Explore: Component = () => {
 
     async function load() {
         setIsRefreshing(true);
-        const res = await axios.get(`${baseUrl}/api/trending?limit=30`, {
-            validateStatus: () => true,
-        });
+        // cache-busting param: /api/trending is sent with Cache-Control:
+        // max-age=60 so the browser would otherwise serve a stale response
+        // when the user explicitly asks for fresh data.
+        const res = await axios.get(
+            `${baseUrl}/api/trending?limit=30&_=${Date.now()}`,
+            { validateStatus: () => true }
+        );
 
         if (res.status === 200 && res.data?.invalid !== true) {
             setStreams(res.data.streams);
