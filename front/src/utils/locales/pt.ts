@@ -10,6 +10,8 @@ export default {
     'home.resolution': 'Resolução',
     'home.searchButton': 'Buscar',
     'home.yourFavorites': 'Seus favoritos',
+    'home.trendingNow': 'Em alta agora',
+    'home.seeAll': 'Ver tudo',
 
     'common.live': 'Ao vivo',
     'common.offline': 'Offline',

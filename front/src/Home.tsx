@@ -9,6 +9,14 @@ const clipRegex = /(.+)?twitch\.tv\/\w+\/clip\/[\w-]+/,
     vodRegex = /(.+)?twitch\.tv\/videos\/(\d+)/,
     twitchDomainRegex = /(.+)?twitch\.tv/;
 
+interface TrendingStream {
+    login: string;
+    displayName: string;
+    thumbnail: string;
+    viewers: number;
+    game: string | null;
+}
+
 const Home: Component = () => {
     const [inputVal, setInputVal] = createSignal(''),
         [selectedRes, setRes] = createSignal(''),
@@ -17,6 +25,8 @@ const Home: Component = () => {
         [favoritesList, setFavoritesList] = createSignal<
             { displayName: string; avatar: string; live: boolean }[]
         >([]),
+        [trendingReady, setTrendingReady] = createSignal(false),
+        [trending, setTrending] = createSignal<TrendingStream[]>([]),
         redirect = useNavigate(),
         baseUrl = window.location.origin,
         showFavorites = localStorage.getItem('privch_homepage') === 'favorites',
@@ -51,6 +61,17 @@ const Home: Component = () => {
             setFavoritesReady(true);
         })();
     }
+
+    (async () => {
+        const res = await axios.get(`${baseUrl}/api/trending?limit=12`, {
+            validateStatus: () => true,
+        });
+
+        if (res.status === 200 && res.data?.invalid !== true) {
+            setTrending(res.data.streams);
+        }
+        setTrendingReady(true);
+    })();
 
     function handleSearch() {
         if (inputVal().length < 1) return;
@@ -182,6 +203,53 @@ const Home: Component = () => {
                     </div>
                 </div>
             </div>
+            <Show when={trendingReady() && trending().length > 0}>
+                <div class="container mx-auto px-10 mt-16 mb-16">
+                    <div class="flex items-center justify-between mb-3">
+                        <h2 class="text-lg font-semibold">
+                            {t('home.trendingNow')}
+                        </h2>
+                        <a
+                            href="/explore"
+                            class="text-sm text-secondary hover:underline"
+                        >
+                            {t('home.seeAll')}
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                        <For each={trending()}>
+                            {(stream) => (
+                                <a
+                                    href={`/${stream.login}`}
+                                    class="bg-base-200 hover:bg-base-300 rounded-md overflow-hidden"
+                                >
+                                    <div
+                                        class="bg-cover bg-center h-24"
+                                        style={{
+                                            'background-image': `url('${baseUrl}/api/proxy?url=${btoa(
+                                                stream.thumbnail
+                                            )}')`,
+                                        }}
+                                    />
+                                    <div class="p-2">
+                                        <div class="text-sm font-semibold truncate">
+                                            {stream.displayName}
+                                        </div>
+                                        <div class="flex justify-between items-center text-xs text-base-content/60 mt-1">
+                                            <span class="truncate">
+                                                {stream.game ?? ''}
+                                            </span>
+                                            <span class="badge badge-error badge-xs shrink-0">
+                                                {stream.viewers.toLocaleString()}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            )}
+                        </For>
+                    </div>
+                </div>
+            </Show>
         </>
     );
 };

@@ -4,6 +4,8 @@ Privch (**Priv**ate + **T**witch) is a privacy-focused, ad-free alternative fron
 
 **Demo:** [privch-production.up.railway.app](https://privch-production.up.railway.app)
 
+![Privch homepage](docs/screenshot.png)
+
 ## Features
 
 - **No trackers** — all media and API requests go through the server, not your browser directly to Twitch.

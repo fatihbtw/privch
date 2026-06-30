@@ -10,6 +10,8 @@ export default {
     'home.resolution': 'Разрешение',
     'home.searchButton': 'Искать',
     'home.yourFavorites': 'Твои избранные',
+    'home.trendingNow': 'Сейчас популярно',
+    'home.seeAll': 'Смотреть все',
 
     'common.live': 'В эфире',
     'common.offline': 'Офлайн',

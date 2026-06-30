@@ -10,6 +10,8 @@ export default {
     'home.resolution': 'Çözünürlük',
     'home.searchButton': 'Ara',
     'home.yourFavorites': 'Favorilerin',
+    'home.trendingNow': 'Şu anda trend',
+    'home.seeAll': 'Tümünü gör',
 
     'common.live': 'Canlı',
     'common.offline': 'Çevrimdışı',
