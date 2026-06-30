@@ -3,6 +3,7 @@ import { clipsResponse } from '../utils/types';
 import formatTime from '../utils/formatTime';
 import formatDate from '../utils/formatDate';
 import { A } from '@solidjs/router';
+import { t } from '../utils/i18n';
 
 const ClipsContainer: Component<{
     tabData: Accessor<clipsResponse | undefined>;
@@ -19,10 +20,12 @@ const ClipsContainer: Component<{
                     onchange={(e) => setFilter(e.target.value)}
                     class="select select-bordered select-sm"
                 >
-                    <option value="LAST_DAY">Last Day</option>
-                    <option value="LAST_WEEK">Last Week</option>
-                    <option value="LAST_MONTH">Last Month</option>
-                    <option value="ALL_TIME">All Time</option>
+                    <option value="LAST_DAY">{t('filters.lastDay')}</option>
+                    <option value="LAST_WEEK">{t('filters.lastWeek')}</option>
+                    <option value="LAST_MONTH">
+                        {t('filters.lastMonth')}
+                    </option>
+                    <option value="ALL_TIME">{t('filters.allTime')}</option>
                 </select>
             </div>
             <div class="mt-3 mb-32">
@@ -35,7 +38,7 @@ const ClipsContainer: Component<{
                     {tabData()?.clips?.length! < 1 ? (
                         <div class="flex justify-center items-center flex-col p-2">
                             <span class="italic">
-                                Nothing here. Maybe try another filter?
+                                {t('filters.emptyResult')}
                             </span>
                         </div>
                     ) : (
@@ -63,9 +66,10 @@ const ClipsContainer: Component<{
                                                     item.durationSeconds
                                                 )}
                                                 <br />
-                                                {item.viewCount} Views
+                                                {item.viewCount}{' '}
+                                                {t('clips.views')}
                                                 <br />
-                                                By {item.author}
+                                                {t('clips.by')} {item.author}
                                                 <br />
                                                 <span class="text-indigo-400">
                                                     {item.game}

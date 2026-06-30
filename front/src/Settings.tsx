@@ -1,5 +1,6 @@
 import { Component, createSignal, Show } from 'solid-js';
 import Nav from './components/nav';
+import { t, locale, setLocale, LOCALES, Locale } from './utils/i18n';
 
 const QUALITY_KEY = 'privch_quality';
 const HOMEPAGE_KEY = 'privch_homepage';
@@ -66,22 +67,39 @@ const Settings: Component = () => {
     return (
         <div>
             <Nav isHome={false} />
-            <title>Privch - Settings</title>
+            <title>Privch - {t('settings.title')}</title>
             <div class="container mx-auto px-10 py-2 mb-16 md:mb-10 max-w-md">
-                <h1 class="text-2xl font-bold mb-4">Einstellungen</h1>
+                <h1 class="text-2xl font-bold mb-4">{t('settings.title')}</h1>
 
                 <div class="form-control">
                     <label class="label">
-                        <span class="label-text">
-                            Bevorzugte Stream-Qualität
-                        </span>
+                        <span class="label-text">{t('settings.language')}</span>
+                    </label>
+                    <select
+                        class="select select-bordered"
+                        value={locale()}
+                        onChange={(e) =>
+                            setLocale(e.currentTarget.value as Locale)
+                        }
+                    >
+                        {LOCALES.map((l) => (
+                            <option value={l.value}>{l.label}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <div class="form-control mt-4">
+                    <label class="label">
+                        <span class="label-text">{t('settings.quality')}</span>
                     </label>
                     <select
                         class="select select-bordered"
                         value={quality()}
                         onChange={(e) => setQuality(e.currentTarget.value)}
                     >
-                        <option value="chunked">Source (Max)</option>
+                        <option value="chunked">
+                            {t('settings.qualitySource')}
+                        </option>
                         <option value="1080p60">1080p60</option>
                         <option value="720p60">720p60</option>
                         <option value="720p">720p</option>
@@ -90,29 +108,33 @@ const Settings: Component = () => {
                         <option value="160p30">160p</option>
                     </select>
                     <p class="text-sm text-base-content/60 mt-1">
-                        Wird verwendet, wenn die gewählte Qualität für einen
-                        Stream verfügbar ist. Ansonsten wird automatisch auf
-                        Source zurückgegriffen.
+                        {t('settings.qualityHint')}
                     </p>
                 </div>
 
                 <div class="form-control mt-4">
                     <label class="label">
-                        <span class="label-text">Theme</span>
+                        <span class="label-text">{t('settings.theme')}</span>
                     </label>
                     <select
                         class="select select-bordered"
                         value={theme()}
                         onChange={(e) => changeTheme(e.currentTarget.value)}
                     >
-                        <option value="dracula">Dunkel</option>
-                        <option value="light">Hell</option>
+                        <option value="dracula">
+                            {t('settings.themeDark')}
+                        </option>
+                        <option value="light">
+                            {t('settings.themeLight')}
+                        </option>
                     </select>
                 </div>
 
                 <div class="form-control mt-4">
                     <label class="label">
-                        <span class="label-text">Standard-Startseite</span>
+                        <span class="label-text">
+                            {t('settings.homepage')}
+                        </span>
                     </label>
                     <select
                         class="select select-bordered"
@@ -121,12 +143,15 @@ const Settings: Component = () => {
                             setHomepage(e.currentTarget.value)
                         }
                     >
-                        <option value="search">Suche</option>
-                        <option value="favorites">Favoriten</option>
+                        <option value="search">
+                            {t('settings.homepageSearch')}
+                        </option>
+                        <option value="favorites">
+                            {t('settings.homepageFavorites')}
+                        </option>
                     </select>
                     <p class="text-sm text-base-content/60 mt-1">
-                        "Favoriten" zeigt deine aktuell live gehenden
-                        Favoriten direkt auf der Startseite.
+                        {t('settings.homepageHint')}
                     </p>
                 </div>
 
@@ -141,18 +166,15 @@ const Settings: Component = () => {
                             }
                         />
                         <span class="label-text">
-                            Benachrichtigungen für Favoriten
+                            {t('settings.notifications')}
                         </span>
                     </label>
                     <p class="text-sm text-base-content/60 mt-1">
-                        Browser-Benachrichtigung, sobald einer deiner
-                        Favoriten live geht. Läuft komplett lokal, kein
-                        Account nötig.
+                        {t('settings.notificationsHint')}
                     </p>
                     <Show when={notificationsBlocked()}>
                         <p class="text-sm text-error mt-1">
-                            Benachrichtigungen wurden im Browser blockiert.
-                            Bitte in den Browser-Einstellungen erlauben.
+                            {t('settings.notificationsBlocked')}
                         </p>
                     </Show>
                 </div>
@@ -167,11 +189,12 @@ const Settings: Component = () => {
                                 setAudioOnly(e.currentTarget.checked)
                             }
                         />
-                        <span class="label-text">Nur-Audio-Modus</span>
+                        <span class="label-text">
+                            {t('settings.audioOnly')}
+                        </span>
                     </label>
                     <p class="text-sm text-base-content/60 mt-1">
-                        Spielt Streams nur als Audio ab – spart Bandbreite
-                        und läuft auf dem Handy auch im Hintergrund weiter.
+                        {t('settings.audioOnlyHint')}
                     </p>
                 </div>
 
@@ -186,19 +209,18 @@ const Settings: Component = () => {
                             }
                         />
                         <span class="label-text">
-                            Vorgeschlagene Channels anzeigen
+                            {t('settings.showSuggestions')}
                         </span>
                     </label>
                     <p class="text-sm text-base-content/60 mt-1">
-                        Blendet die Sidebar mit ähnlichen Channels auf der
-                        Stream-Seite aus, wenn deaktiviert.
+                        {t('settings.showSuggestionsHint')}
                     </p>
                 </div>
 
                 <div class="form-control mt-4">
                     <label class="label">
                         <span class="label-text">
-                            Standard-Wiedergabegeschwindigkeit (VODs)
+                            {t('settings.playbackSpeed')}
                         </span>
                     </label>
                     <select
@@ -217,13 +239,12 @@ const Settings: Component = () => {
                         <option value="2">2x</option>
                     </select>
                     <p class="text-sm text-base-content/60 mt-1">
-                        Gilt nur für VODs, Livestreams lassen sich nicht
-                        beschleunigen.
+                        {t('settings.playbackSpeedHint')}
                     </p>
                 </div>
 
                 <button class="btn btn-primary mt-4" onclick={save}>
-                    Speichern
+                    {t('settings.save')}
                 </button>
             </div>
         </div>

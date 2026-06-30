@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Nav from './components/nav';
 import { VsSync } from 'solid-icons/vs';
+import { t } from './utils/i18n';
 
 const FavoritesPage: Component = () => {
     const [isReady, setIsReady] = createSignal(false),
@@ -80,7 +81,7 @@ const FavoritesPage: Component = () => {
             <Show when={isReady() == false}>
                 <div class="flex justify-center items-center h-screen flex-col">
                     <span class="loading loading-spinner text-secondary"></span>
-                    Loading..
+                    {t('common.loading')}
                 </div>
             </Show>
             <div class="container mx-auto my-auto px-10 py-2 mb-16 md:mb-10">
@@ -92,12 +93,14 @@ const FavoritesPage: Component = () => {
                     <div class="fixed inset-0 bg-black opacity-50"></div>
 
                     <div class="bg-base-100 p-8 rounded shadow-lg z-10">
-                        <h3 class="font-semibold text-lg">Export / Import</h3>
+                        <h3 class="font-semibold text-lg">
+                            {t('favorites.exportImport')}
+                        </h3>
                         <div class="mt-1">
                             <Show when={exportBase64Channels() !== ''}>
                                 <div class="mb-1">
                                     <h3 class="font-semibold text-lg">
-                                        Your favorites code
+                                        {t('favorites.yourCode')}
                                     </h3>
                                     <input
                                         class="input input-bordered w-full max-w-xs"
@@ -108,12 +111,11 @@ const FavoritesPage: Component = () => {
                             </Show>
                             <div>
                                 <h3 class="font-semibold text-lg">
-                                    Import favorites code
+                                    {t('favorites.importCode')}
                                 </h3>
                                 <Show when={importVal().length > 1}>
                                     <p class="italic text-warning mb-1">
-                                        This will overwrite your previous
-                                        favorites!
+                                        {t('favorites.importWarning')}
                                     </p>
                                 </Show>
                                 <input
@@ -132,14 +134,14 @@ const FavoritesPage: Component = () => {
                                     class="mt-4 btn btn-success"
                                     onclick={() => importFavs()}
                                 >
-                                    Import
+                                    {t('favorites.import')}
                                 </button>
                             </Show>
                             <button
                                 class="mt-4 btn btn-secondary"
                                 onclick={() => closePopup(true)}
                             >
-                                Close
+                                {t('favorites.close')}
                             </button>
                         </div>
                     </div>
@@ -150,11 +152,11 @@ const FavoritesPage: Component = () => {
                         class="mt-4 btn btn-neutral btn-sm"
                         onclick={() => closePopup(false)}
                     >
-                        <VsSync /> Import / Export
+                        <VsSync /> {t('favorites.exportImport')}
                     </button>
                 </div>
                 <Show when={isReady() == true && emptyList() == true}>
-                    <div>You don't have any channels in your favorites</div>
+                    <div>{t('favorites.empty')}</div>
                 </Show>
                 <Show when={isReady() == true && emptyList() == false}>
                     <div class="mt-2">
@@ -184,7 +186,7 @@ const FavoritesPage: Component = () => {
                                                         {channel.displayName}{' '}
                                                         {channel.live ? (
                                                             <span class="badge badge-error ml-1">
-                                                                Live
+                                                                {t('common.live')}
                                                             </span>
                                                         ) : (
                                                             <></>

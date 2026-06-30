@@ -1,5 +1,6 @@
 import { Component, For, Show, createResource } from 'solid-js';
 import axios from 'axios';
+import { t } from '../utils/i18n';
 
 interface SuggestedChannel {
     login: string;
@@ -23,7 +24,7 @@ const StreamSuggestions: Component<{ username: string }> = (props) => {
 
     return (
         <div class="flex flex-col gap-2 w-full">
-            <h2 class="text-xl">Vorschläge</h2>
+            <h2 class="text-xl">{t('suggestions.title')}</h2>
             <Show when={!suggestions.loading}>
                 <For each={suggestions()}>
                     {(channel) => (
@@ -40,7 +41,8 @@ const StreamSuggestions: Component<{ username: string }> = (props) => {
                                     {channel.displayName}
                                 </div>
                                 <div class="text-sm text-base-content/60">
-                                    {channel.viewers.toLocaleString()} Zuschauer
+                                    {channel.viewers.toLocaleString()}{' '}
+                                    {t('suggestions.viewers')}
                                 </div>
                             </div>
                         </a>

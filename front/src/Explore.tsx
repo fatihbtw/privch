@@ -1,6 +1,7 @@
 import { Component, createSignal, For, Show } from 'solid-js';
 import axios from 'axios';
 import Nav from './components/nav';
+import { t } from './utils/i18n';
 
 const Explore: Component = () => {
     const [isReady, setIsReady] = createSignal(false),
@@ -34,9 +35,9 @@ const Explore: Component = () => {
     return (
         <div>
             <Nav isHome={false} />
-            <title>Privch - Explore</title>
+            <title>Privch - {t('explore.title')}</title>
             <div class="container mx-auto px-10 py-2 mb-16 md:mb-10">
-                <h1 class="text-2xl font-bold mb-4">Entdecken</h1>
+                <h1 class="text-2xl font-bold mb-4">{t('explore.title')}</h1>
 
                 <Show when={isReady() == false}>
                     <div class="flex justify-center items-center h-64">
@@ -46,7 +47,7 @@ const Explore: Component = () => {
 
                 <Show when={isReady() == true && isAvailable() == false}>
                     <p class="text-base-content/60">
-                        Trending-Streams sind gerade nicht verfügbar.
+                        {t('explore.unavailable')}
                     </p>
                 </Show>
 

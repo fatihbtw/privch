@@ -4,6 +4,7 @@ import { clipsApiResponse } from './utils/types';
 import Nav from './components/nav';
 import { A, useParams } from '@solidjs/router';
 import formatTimeAgo from './utils/formatTimeAgo';
+import { t } from './utils/i18n';
 
 const Clips: Component = () => {
     const instanceBaseUrl = window.location.origin,
@@ -42,16 +43,18 @@ const Clips: Component = () => {
             <Show when={isReady() == false}>
                 <div class="flex justify-center items-center h-screen flex-col">
                     <span class="loading loading-spinner text-secondary"></span>
-                    Loading..
+                    {t('common.loading')}
                 </div>
             </Show>
             <Show when={isReady() == true}>
                 <Show when={isValid() == false}>
-                    <title>Invalid Clip</title>
+                    <title>{t('clips.notFoundTitle')}</title>
                     <div class="container max-auto my-auto px-5 py-10">
                         <div class="border border-base-200 rounded-lg p-6 mt-3 ml-5">
-                            <h1 class="font-semibold text-2xl">Not found</h1>
-                            <p>Clip not found.</p>
+                            <h1 class="font-semibold text-2xl">
+                                {t('clips.notFoundTitle')}
+                            </h1>
+                            <p>{t('clips.notFoundDesc')}</p>
                         </div>
                     </div>
                 </Show>
@@ -72,11 +75,11 @@ const Clips: Component = () => {
                                         class="text-indigo-400"
                                         href={`${instanceBaseUrl}/${username}/clip/${slug}?embed=true`}
                                     >
-                                        Embedded Link
+                                        {t('clips.embeddedLink')}
                                     </a>
                                     <br />
                                     <span class="italic">
-                                        Created{' '}
+                                        {t('clips.created')}{' '}
                                         {formatTimeAgo(
                                             clipData()?.metadata!.date!
                                         )}
@@ -89,8 +92,10 @@ const Clips: Component = () => {
                                     </span>
                                     <br />
                                     <span>
-                                        By {clipData()?.metadata!.author} -{' '}
-                                        {clipData()?.metadata!.views} Views
+                                        {t('clips.by')}{' '}
+                                        {clipData()?.metadata!.author} -{' '}
+                                        {clipData()?.metadata!.views}{' '}
+                                        {t('clips.views')}
                                     </span>
                                     <br />
                                     <A

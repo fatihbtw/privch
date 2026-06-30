@@ -26,6 +26,7 @@ import {
 } from './utils/types';
 import VodsContainer from './components/vodsContainer';
 import { applyStoredVolume } from './utils/playerVolume';
+import { t } from './utils/i18n';
 
 const ClipsContainer = lazy(() => import('./components/clipsContainer')),
     StreamChat = lazy(() => import('./components/streamChat'));
@@ -318,7 +319,7 @@ const Stream: Component = () => {
             <Show when={isReady() == false}>
                 <div class="flex justify-center items-center h-screen flex-col">
                     <span class="loading loading-spinner text-secondary"></span>
-                    Loading..
+                    {t('common.loading')}
                 </div>
             </Show>
             <Show when={isReady() == true}>
@@ -327,7 +328,7 @@ const Stream: Component = () => {
                     <Show when={isHlsSupported() == false}>
                         <div class="container mx-auto my-auto px-10 py-2">
                             <div class="border p-2 rounded-md shadow-md border-base-200">
-                                Your browser don't support HLS.
+                                {t('stream.noHls')}
                             </div>
                         </div>
                     </Show>
@@ -379,7 +380,7 @@ const Stream: Component = () => {
                                     }`}
                                     onclick={() => setVisibleTab('videos')}
                                 >
-                                    Videos
+                                    {t('stream.videos')}
                                 </a>
                                 <a
                                     class={`tab ${
@@ -389,7 +390,7 @@ const Stream: Component = () => {
                                     }`}
                                     onclick={() => setVisibleTab('clips')}
                                 >
-                                    Clips
+                                    {t('stream.clips')}
                                 </a>
                             </div>
                             <div class="mt-2">
@@ -463,7 +464,7 @@ const Stream: Component = () => {
                                     <div class="flex justify-end items-center gap-2 mt-1">
                                         <button
                                             class="btn btn-sm btn-ghost"
-                                            title="Theatermodus"
+                                            title={t('stream.theaterMode')}
                                             onclick={() =>
                                                 setTheaterMode(!theaterMode())
                                             }
@@ -512,7 +513,9 @@ const Stream: Component = () => {
                                             height: '24rem',
                                         }}
                                     >
-                                        <h2 class="text-xl shrink-0">Chat</h2>
+                                        <h2 class="text-xl shrink-0">
+                                            {t('stream.chat')}
+                                        </h2>
                                         <div
                                             class="mt-3 flex-1 min-h-0 overflow-auto break-words"
                                             style={{

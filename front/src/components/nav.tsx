@@ -10,6 +10,7 @@ import {
     FiSun,
 } from 'solid-icons/fi';
 import { useNavigate } from '@solidjs/router';
+import { t } from '../utils/i18n';
 
 const THEME_KEY = 'privch_theme';
 
@@ -50,17 +51,17 @@ const navBar: Component<{ isHome: boolean }> = ({ isHome }) => {
                             >
                                 <li>
                                     <a href="/explore">
-                                        <FiCompass /> Explore
+                                        <FiCompass /> {t('nav.explore')}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/favorites">
-                                        <FiHeart /> Favorites
+                                        <FiHeart /> {t('nav.favorites')}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/settings">
-                                        <FiSettings /> Settings
+                                        <FiSettings /> {t('nav.settings')}
                                     </a>
                                 </li>
                                 <li>
@@ -70,7 +71,7 @@ const navBar: Component<{ isHome: boolean }> = ({ isHome }) => {
                                         ) : (
                                             <FiMoon />
                                         )}{' '}
-                                        Theme
+                                        {t('nav.theme')}
                                     </button>
                                 </li>
                             </ul>
@@ -123,17 +124,17 @@ const navBar: Component<{ isHome: boolean }> = ({ isHome }) => {
                                 >
                                     <li>
                                         <a href="/explore">
-                                            <FiCompass /> Explore
+                                            <FiCompass /> {t('nav.explore')}
                                         </a>
                                     </li>
                                     <li>
                                         <a href="/favorites">
-                                            <FiHeart /> Favorites
+                                            <FiHeart /> {t('nav.favorites')}
                                         </a>
                                     </li>
                                     <li>
                                         <a href="/settings">
-                                            <FiSettings /> Settings
+                                            <FiSettings /> {t('nav.settings')}
                                         </a>
                                     </li>
                                     <li>
@@ -143,7 +144,7 @@ const navBar: Component<{ isHome: boolean }> = ({ isHome }) => {
                                         ) : (
                                             <FiMoon />
                                         )}{' '}
-                                        Theme
+                                        {t('nav.theme')}
                                         </button>
                                     </li>
                                 </ul>

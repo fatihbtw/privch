@@ -3,6 +3,7 @@ import { vodsResponse } from '../utils/types';
 import formatTime from '../utils/formatTime';
 import formatDate from '../utils/formatDate';
 import { A } from '@solidjs/router';
+import { t } from '../utils/i18n';
 
 const VodsContainer: Component<{
     tabData: Accessor<vodsResponse | undefined>;
@@ -19,10 +20,12 @@ const VodsContainer: Component<{
                     onchange={(e) => setFilter(e.target.value)}
                     class="select select-bordered select-sm"
                 >
-                    <option value="ARCHIVE">Archives</option>
-                    <option value="UPLOAD">Uploads</option>
-                    <option value="HIGHLIGHT">Highlights</option>
-                    <option value="ALL">All</option>
+                    <option value="ARCHIVE">{t('filters.archives')}</option>
+                    <option value="UPLOAD">{t('filters.uploads')}</option>
+                    <option value="HIGHLIGHT">
+                        {t('filters.highlights')}
+                    </option>
+                    <option value="ALL">{t('filters.all')}</option>
                 </select>
             </div>
             <div class="mt-3 mb-32">
@@ -35,7 +38,7 @@ const VodsContainer: Component<{
                     {tabData()?.vods?.length! < 1 ? (
                         <div class="flex justify-center items-center flex-col p-2">
                             <span class="italic">
-                                Nothing here. Maybe try another filter?
+                                {t('filters.emptyResult')}
                             </span>
                         </div>
                     ) : (

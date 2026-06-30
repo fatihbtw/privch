@@ -20,6 +20,7 @@ import Nav from './components/nav';
 import { BiSolidDownload, BiRegularX } from 'solid-icons/bi';
 import genericResponseObject from '../../src/types/genericResponseObject';
 import { applyStoredVolume } from './utils/playerVolume';
+import { t } from './utils/i18n';
 
 const DownloadVods = lazy(() => import('./components/downloadVod'));
 
@@ -254,14 +255,14 @@ const Vods: Component = () => {
             <Show when={isHlsSupported() == false}>
                 <div class="container mx-auto my-auto px-10 py-2">
                     <div class="border p-2 rounded-md shadow-md border-base-200">
-                        Your browser don't support HLS.
+                        {t('stream.noHls')}
                     </div>
                 </div>
             </Show>
             <Show when={isReady() == false}>
                 <div class="flex justify-center items-center h-screen flex-col">
                     <span class="loading loading-spinner text-secondary"></span>
-                    Loading..
+                    {t('common.loading')}
                 </div>
             </Show>
             <Show when={isReady() == true}>
@@ -269,7 +270,7 @@ const Vods: Component = () => {
                 <Show when={isValid() == false}>
                     <div class="container mx-auto my-auto px-10 py-2">
                         <div class="border p-2 rounded-md shadow-md border-base-200">
-                            Invalid VOD.
+                            {t('vod.invalid')}
                         </div>
                     </div>
                 </Show>
@@ -361,7 +362,9 @@ const Vods: Component = () => {
                                 </div>
                                 <div class="w-full md:w-2/4">
                                     <div class="border border-base-200 rounded-md shadow-md p-4 w-auto">
-                                        <h2 class="text-xl">Chat</h2>
+                                        <h2 class="text-xl">
+                                            {t('stream.chat')}
+                                        </h2>
                                         <div
                                             class="mt-3 h-96 md:h-80 overflow-auto break-words"
                                             style={{

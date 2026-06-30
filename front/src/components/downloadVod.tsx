@@ -2,6 +2,7 @@
 import { Parser } from 'm3u8-parser';
 import { createSignal, Component, Setter, createEffect, Show } from 'solid-js';
 import axios from 'axios';
+import { t } from '../utils/i18n';
 
 interface EventType extends MessageEvent<any> {
     data: {
@@ -156,9 +157,11 @@ const DownloadVods: Component<{
         <div>
             <div>
                 <div>
-                    File: <code class="text-sm">{filename}</code>
+                    {t('vod.file')} <code class="text-sm">{filename}</code>
                 </div>
-                <div>Size: ~ {calcAproxSize(totalSegments())} GB</div>
+                <div>
+                    {t('vod.size')} {calcAproxSize(totalSegments())} GB
+                </div>
                 <progress
                     class="progress progress-info w-full"
                     value={downloadedSegments()}
@@ -166,17 +169,17 @@ const DownloadVods: Component<{
                 ></progress>
                 <Show when={downloadStarted() == true}>
                     <div class="text-sm text-info">
-                        {downloadedSegments()} of {totalSegments()}
+                        {downloadedSegments()} {t('vod.of')} {totalSegments()}
                     </div>
                     <div class="text-sm text-error">
-                        {failedSegments()} failed
+                        {failedSegments()} {t('vod.failed')}
                     </div>
                 </Show>
             </div>
             <Show when={downloadStarted() == false}>
                 <div class="mt-1">
                     <button class="btn btn-info btn-sm" onclick={startDownload}>
-                        Start download
+                        {t('vod.startDownload')}
                     </button>
                 </div>
             </Show>

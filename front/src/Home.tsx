@@ -2,6 +2,7 @@ import { Component, createSignal, For, Show } from 'solid-js';
 import axios from 'axios';
 import Nav from './components/nav';
 import { useNavigate } from '@solidjs/router';
+import { t } from './utils/i18n';
 
 const clipRegex = /(.+)?twitch\.tv\/\w+\/clip\/[\w-]+/,
     streamRegex = /(.+)?twitch\.tv\/(.+)/,
@@ -95,7 +96,9 @@ const Home: Component = () => {
             <title>Privch - Home</title>
             <Show when={showFavorites && favoriteLogins.length > 0}>
                 <div class="container mx-auto px-10 mt-10">
-                    <h2 class="text-lg font-semibold mb-2">Deine Favoriten</h2>
+                    <h2 class="text-lg font-semibold mb-2">
+                        {t('home.yourFavorites')}
+                    </h2>
                     <Show when={!favoritesReady()}>
                         <span class="loading loading-spinner loading-sm text-secondary"></span>
                     </Show>
@@ -121,7 +124,9 @@ const Home: Component = () => {
                                                     : 'badge-ghost'
                                             }`}
                                         >
-                                            {channel.live ? 'Live' : 'Offline'}
+                                            {channel.live
+                                                ? t('common.live')
+                                                : t('common.offline')}
                                         </span>
                                     </a>
                                 )}
@@ -140,23 +145,25 @@ const Home: Component = () => {
                 <div class="m-auto">
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
-                            <span class="label-text">Search</span>
+                            <span class="label-text">
+                                {t('home.searchLabel')}
+                            </span>
                         </label>
                         <input
                             type="text"
-                            placeholder="URL, name, vod, clip..."
+                            placeholder={t('home.placeholder')}
                             class="input input-bordered w-full max-w-xs"
                             value={inputVal()}
                             onInput={(e) => setInputVal(e.currentTarget.value)}
                         />
                         <details class="mt-2 rounded-md border border-base-200 px-4 py-2">
-                            <summary>Advanced</summary>
+                            <summary>{t('home.advanced')}</summary>
                             <select
                                 onchange={(e) => setRes(e.target.value)}
                                 class="select select-bordered w-full max-w-xs mt-1"
                             >
                                 <option disabled selected>
-                                    Resolution
+                                    {t('home.resolution')}
                                 </option>
                                 <option value="1080">1920x1080</option>
                                 <option value="720">1280x720</option>
@@ -170,7 +177,7 @@ const Home: Component = () => {
                             class="btn btn-secondary mt-2"
                             onClick={handleSearch}
                         >
-                            Search
+                            {t('home.searchButton')}
                         </button>
                     </div>
                 </div>

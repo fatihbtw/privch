@@ -4,6 +4,7 @@ import { lazy, onCleanup, onMount } from 'solid-js';
 import axios from 'axios';
 
 import Home from './Home';
+import { t } from './utils/i18n';
 
 // lazy load /:username, /videos/:id, /:username/:slug
 const Stream = lazy(() => import('./Stream')),
@@ -49,13 +50,15 @@ const App: Component = () => {
                     nextState[ch] = data?.live === true;
 
                     if (nextState[ch] && prevState[ch] !== true) {
-                        new Notification(`${data.displayName} ist live`, {
-                            body: data.description ?? '',
-                            icon: data.avatar
-                                ? `${baseUrl}/api/proxy?url=${btoa(
-                                      data.avatar
-                                  )}`
-                                : undefined,
+                        new Notification(
+                            `${data.displayName} ${t('notifications.live')}`,
+                            {
+                                body: data.description ?? '',
+                                icon: data.avatar
+                                    ? `${baseUrl}/api/proxy?url=${btoa(
+                                          data.avatar
+                                      )}`
+                                    : undefined,
                         });
                     }
                 } catch {
