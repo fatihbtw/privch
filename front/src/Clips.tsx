@@ -39,7 +39,7 @@ const Clips: Component = () => {
 
     return (
         <>
-            <Nav isHome={false} />
+            <Nav />
             <Show when={isReady() == false}>
                 <div class="flex justify-center items-center h-screen flex-col">
                     <span class="loading loading-spinner text-secondary"></span>

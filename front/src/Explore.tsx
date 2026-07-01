@@ -1,6 +1,7 @@
 import { Component, createMemo, createSignal, For, Show } from 'solid-js';
 import axios from 'axios';
 import Nav from './components/nav';
+import StreamCard from './components/streamCard';
 import { t } from './utils/i18n';
 import { FiRefreshCw } from 'solid-icons/fi';
 
@@ -66,9 +67,9 @@ const Explore: Component = () => {
 
     return (
         <div>
-            <Nav isHome={false} />
+            <Nav />
             <title>Privch - {t('explore.title')}</title>
-            <div class="container mx-auto px-10 py-2 mb-16 md:mb-10">
+            <div class="container mx-auto px-4 md:px-10 py-4 mb-24 md:mb-10">
                 <div class="flex items-center justify-between mb-4">
                     <h1 class="text-2xl font-bold">{t('explore.title')}</h1>
                     <button
@@ -88,7 +89,7 @@ const Explore: Component = () => {
 
                 <Show when={isReady() == false}>
                     <div class="flex justify-center items-center h-64">
-                        <span class="loading loading-spinner text-secondary"></span>
+                        <span class="loading loading-spinner text-primary"></span>
                     </div>
                 </Show>
 
@@ -151,37 +152,7 @@ const Explore: Component = () => {
                         </div>
                         <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             <For each={filteredStreams()}>
-                                {(stream) => (
-                                    <a
-                                        href={`/${stream.login}`}
-                                        class="bg-base-200 hover:bg-base-300 rounded-md overflow-hidden"
-                                    >
-                                        <div
-                                            class="bg-cover bg-center h-32"
-                                            style={{
-                                                'background-image': `url('${baseUrl}/api/proxy?url=${btoa(
-                                                    stream.thumbnail
-                                                )}')`,
-                                            }}
-                                        />
-                                        <div class="p-2">
-                                            <div class="font-semibold truncate">
-                                                {stream.displayName}
-                                            </div>
-                                            <div class="text-sm text-base-content/60 truncate">
-                                                {stream.title}
-                                            </div>
-                                            <div class="flex justify-between items-center text-xs text-base-content/60 mt-1">
-                                                <span class="truncate">
-                                                    {stream.game ?? ''}
-                                                </span>
-                                                <span class="badge badge-error badge-sm shrink-0">
-                                                    {stream.viewers.toLocaleString()}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                )}
+                                {(stream) => <StreamCard stream={stream} />}
                             </For>
                         </div>
                     </div>

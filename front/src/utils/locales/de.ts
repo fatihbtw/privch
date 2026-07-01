@@ -3,6 +3,7 @@ export default {
     'nav.favorites': 'Favoriten',
     'nav.settings': 'Einstellungen',
     'nav.theme': 'Theme',
+    'nav.home': 'Startseite',
 
     'home.searchLabel': 'Suche',
     'home.placeholder': 'URL, Name, VOD, Clip...',
@@ -12,6 +13,8 @@ export default {
     'home.yourFavorites': 'Deine Favoriten',
     'home.trendingNow': 'Gerade im Trend',
     'home.seeAll': 'Alle anzeigen',
+    'home.tagline':
+        'Twitch privat schauen – ohne Werbung, ohne Konto, ohne Tracking.',
 
     'common.live': 'Live',
     'common.offline': 'Offline',
@@ -46,6 +49,10 @@ export default {
     'settings.playbackSpeedHint':
         'Gilt nur für VODs, Livestreams lassen sich nicht beschleunigen.',
     'settings.save': 'Speichern',
+    'settings.saved': 'Gespeichert!',
+    'settings.sectionAppearance': 'Darstellung',
+    'settings.sectionPlayback': 'Wiedergabe',
+    'settings.sectionGeneral': 'Allgemein',
 
     'favorites.exportImport': 'Export / Import',
     'favorites.yourCode': 'Dein Favoriten-Code',
