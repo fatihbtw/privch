@@ -19,6 +19,33 @@ export class TwitchChatProxy extends EventEmitter {
     private connect() {
         this.ws = new WebSocket(this.url);
 
+        this.ws.onerror = (event) => {
+            console.error(`Twitch chat connection error: ${event.message}`);
+        };
+
+        // reconnect whenever the connection drops or fails to open,
+        // with a delay so a Twitch outage can't busy-loop us
+        this.ws.onclose = () => {
+            this.ws = null;
+            this.connected = false;
+            setTimeout(() => this.connect(), 5000);
+        };
+
+        this.ws.onmessage = (data) => {
+            // a single frame can carry several IRC lines
+            for (const line of data.data.toString().split('\r\n')) {
+                if (line.length === 0) continue;
+
+                // twitch drops connections that don't answer keepalive pings
+                if (line.startsWith('PING')) {
+                    this.ws?.send(line.replace('PING', 'PONG'));
+                    continue;
+                }
+
+                this.messageHandler(line);
+            }
+        };
+
         // tell twitch to give us everything
         this.ws.onopen = () => {
             this.ws.send('CAP REQ :twitch.tv/membership');
@@ -37,38 +64,30 @@ export class TwitchChatProxy extends EventEmitter {
             }
 
             this.connected = true;
-
-            this.ws.onclose = () => {
-                this.ws = null;
-                this.connected = false;
-                this.connect();
-            };
-
-            this.ws.onmessage = (data) => {
-                this.messageHandler(data.data.toString());
-            };
         };
     }
 
     public addStreamer(streamerName: string): void {
-        if (!this.connected || this.streamers.includes(streamerName)) {
+        if (this.streamers.includes(streamerName)) {
             return;
         }
 
+        // always track the streamer; if we're currently reconnecting,
+        // onopen replays the JOINs from this list
         this.streamers.push(streamerName);
-        this.ws?.send(`JOIN #${streamerName}`);
+        if (this.connected) {
+            this.ws?.send(`JOIN #${streamerName}`);
+        }
     }
 
     public removeStreamer(streamerName: string): void {
-        if (!this.connected) {
-            return;
-        }
-
         const index = this.streamers.indexOf(streamerName);
 
         if (index >= 0) {
             this.streamers.splice(index, 1);
-            this.ws?.send(`PART #${streamerName}`);
+            if (this.connected) {
+                this.ws?.send(`PART #${streamerName}`);
+            }
         }
     }
 }
