@@ -6,6 +6,16 @@ Privch (**Priv**ate + **T**witch) is a privacy-focused, ad-free alternative fron
 
 ![Privch homepage](docs/screenshot.png)
 
+## Screenshots
+
+|                   Explore                    |                    Settings                    |
+| :------------------------------------------: | :--------------------------------------------: |
+| ![Explore page](docs/screenshot-explore.png) | ![Settings page](docs/screenshot-settings.png) |
+
+|                Light theme                |                        Mobile                        |
+| :---------------------------------------: | :--------------------------------------------------: |
+| ![Light theme](docs/screenshot-light.png) | <img src="docs/screenshot-mobile.png" width="300" /> |
+
 ## Features
 
 -   **No trackers** — all media and API requests go through the server, not your browser directly to Twitch.
