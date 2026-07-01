@@ -3,6 +3,7 @@ export default {
     'nav.favorites': 'Favoriler',
     'nav.settings': 'Ayarlar',
     'nav.theme': 'Tema',
+    'nav.home': 'Ana Sayfa',
 
     'home.searchLabel': 'Ara',
     'home.placeholder': 'URL, isim, vod, klip...',
@@ -12,6 +13,7 @@ export default {
     'home.yourFavorites': 'Favorilerin',
     'home.trendingNow': 'Şu anda trend',
     'home.seeAll': 'Tümünü gör',
+    'home.tagline': "Twitch'i gizli izleyin — reklamsız, hesapsız, takipsiz.",
 
     'common.live': 'Canlı',
     'common.offline': 'Çevrimdışı',
@@ -44,8 +46,12 @@ export default {
         'Devre dışı bırakıldığında yayın sayfasındaki benzer kanallar kenar çubuğunu gizler.',
     'settings.playbackSpeed': 'Varsayılan oynatma hızı (VOD)',
     'settings.playbackSpeedHint':
-        'Yalnızca VOD\'lar için geçerlidir, canlı yayınlar hızlandırılamaz.',
+        "Yalnızca VOD'lar için geçerlidir, canlı yayınlar hızlandırılamaz.",
     'settings.save': 'Kaydet',
+    'settings.saved': 'Kaydedildi!',
+    'settings.sectionAppearance': 'Görünüm',
+    'settings.sectionPlayback': 'Oynatma',
+    'settings.sectionGeneral': 'Genel',
 
     'favorites.exportImport': 'Dışa Aktar / İçe Aktar',
     'favorites.yourCode': 'Favori kodun',

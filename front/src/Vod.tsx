@@ -50,7 +50,7 @@ const Vods: Component = () => {
         isDownloadEnabled = import.meta.env.VITE_ENABLE_EXPERIMENTAL === 'true',
         base64encode = (content: string) => btoa(content);
 
-    let hlsInstance: Hls, videoRef: HTMLVideoElement, scroll: HTMLDivElement;
+    let hlsInstance: Hls, videoRef!: HTMLVideoElement, scroll!: HTMLDivElement;
 
     if (!Hls.isSupported()) setHlsSuportStatus(false);
 
@@ -251,7 +251,7 @@ const Vods: Component = () => {
 
     return (
         <>
-            <Nav isHome={false} />
+            <Nav />
             <Show when={isHlsSupported() == false}>
                 <div class="container mx-auto my-auto px-10 py-2">
                     <div class="border p-2 rounded-md shadow-md border-base-200">

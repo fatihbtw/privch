@@ -1,21 +1,21 @@
-import { Component, createSignal, Show } from 'solid-js';
+import { Component, For, createSignal } from 'solid-js';
 import {
-    FiMenu,
-    FiHome,
     FiCompass,
-    FiHeart,
-    FiSettings,
     FiGithub,
+    FiHeart,
+    FiHome,
     FiMoon,
+    FiSettings,
     FiSun,
 } from 'solid-icons/fi';
-import { useNavigate } from '@solidjs/router';
+import { useLocation, useNavigate } from '@solidjs/router';
 import { t } from '../utils/i18n';
 
 const THEME_KEY = 'privch_theme';
 
-const navBar: Component<{ isHome: boolean }> = ({ isHome }) => {
+const NavBar: Component = () => {
     const navigate = useNavigate(),
+        location = useLocation(),
         [theme, setTheme] = createSignal(
             localStorage.getItem(THEME_KEY) || 'dracula'
         );
@@ -27,184 +27,92 @@ const navBar: Component<{ isHome: boolean }> = ({ isHome }) => {
         setTheme(next);
     }
 
+    const links = [
+        { href: '/', icon: FiHome, label: 'nav.home' },
+        { href: '/explore', icon: FiCompass, label: 'nav.explore' },
+        { href: '/favorites', icon: FiHeart, label: 'nav.favorites' },
+        { href: '/settings', icon: FiSettings, label: 'nav.settings' },
+    ];
+
+    const isActive = (href: string) =>
+        href === '/'
+            ? location.pathname === '/'
+            : location.pathname.startsWith(href);
+
     return (
         <>
-            <a
-                class="btn btn-ghost btn-circle fixed bottom-4 right-4 z-40"
-                href="https://github.com/fatihbtw/privch"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="GitHub"
-            >
-                <FiGithub size={22} />
-            </a>
-            <Show when={isHome == true}>
-                <div class="navbar backdrop-blur-md">
-                    <div class="navbar-start">
-                        <div class="dropdown">
-                            <label tabIndex={0} class="btn btn-ghost lg:hidden">
-                                <FiMenu />
-                            </label>
-                            <ul
-                                tabIndex={0}
-                                class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-lg"
-                            >
-                                <li>
-                                    <a href="/explore">
-                                        <FiCompass /> {t('nav.explore')}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/favorites">
-                                        <FiHeart /> {t('nav.favorites')}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/settings">
-                                        <FiSettings /> {t('nav.settings')}
-                                    </a>
-                                </li>
-                                <li>
-                                    <button onclick={toggleTheme}>
-                                        {theme() === 'dracula' ? (
-                                            <FiSun />
-                                        ) : (
-                                            <FiMoon />
-                                        )}{' '}
-                                        {t('nav.theme')}
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                        <a class="btn btn-ghost normal-case text-lg" href="/">
-                            <FiHome /> Privch
-                        </a>
-                    </div>
-                    <div class="navbar-end hidden lg:flex h-2">
-                        <ul class="menu menu-horizontal px-1 text-lg">
-                            <li>
-                                <a href="/explore">
-                                    <FiCompass />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/favorites">
-                                    <FiHeart />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/settings">
-                                    <FiSettings />
-                                </a>
-                            </li>
-                            <li>
-                                <button onclick={toggleTheme}>
-                                    {theme() === 'dracula' ? <FiSun /> : <FiMoon />}
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+            {/* top bar */}
+            <div class="navbar sticky top-0 z-40 bg-base-100/80 backdrop-blur border-b border-base-content/10 min-h-14">
+                <div class="navbar-start">
+                    <a
+                        class="btn btn-ghost normal-case text-xl gap-2 px-2"
+                        href="/"
+                    >
+                        <img src="/assets/favicon.svg" class="w-7 h-7" alt="" />
+                        <span class="font-extrabold tracking-tight">
+                            Priv<span class="text-primary">ch</span>
+                        </span>
+                    </a>
                 </div>
-            </Show>
-            <Show when={isHome == false}>
-                {/* desktop */}
-                <div class="hidden md:flex lg:flex">
-                    <div class="navbar backdrop-blur-md">
-                        <div class="navbar-start">
-                            <div class="dropdown">
-                                <label
-                                    tabIndex={0}
-                                    class="btn btn-ghost lg:hidden"
-                                >
-                                    <FiMenu />
-                                </label>
-                                <ul
-                                    tabIndex={0}
-                                    class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-lg"
-                                >
-                                    <li>
-                                        <a href="/explore">
-                                            <FiCompass /> {t('nav.explore')}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/favorites">
-                                            <FiHeart /> {t('nav.favorites')}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/settings">
-                                            <FiSettings /> {t('nav.settings')}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <button onclick={toggleTheme}>
-                                            {theme() === 'dracula' ? (
-                                            <FiSun />
-                                        ) : (
-                                            <FiMoon />
-                                        )}{' '}
-                                        {t('nav.theme')}
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                            <a
-                                class="btn btn-ghost normal-case text-lg"
-                                href="/"
-                            >
-                                <FiHome /> Privch
-                            </a>
-                        </div>
-                        <div class="navbar-end hidden lg:flex h-2">
-                            <ul class="menu menu-horizontal px-1 text-lg">
+                <div class="navbar-end gap-1">
+                    {/* page links, desktop only - mobile uses the bottom nav */}
+                    <ul class="menu menu-horizontal px-1 gap-1 hidden md:flex">
+                        <For each={links.slice(1)}>
+                            {(link) => (
                                 <li>
-                                    <a href="/explore">
-                                        <FiCompass />
+                                    <a
+                                        href={link.href}
+                                        class={
+                                            isActive(link.href)
+                                                ? 'active font-semibold'
+                                                : ''
+                                        }
+                                    >
+                                        <link.icon />
+                                        {t(link.label)}
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="/favorites">
-                                        <FiHeart />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/settings">
-                                        <FiSettings />
-                                    </a>
-                                </li>
-                                <li>
-                                    <button onclick={toggleTheme}>
-                                        {theme() === 'dracula' ? <FiSun /> : <FiMoon />}
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                            )}
+                        </For>
+                    </ul>
+                    <button
+                        class="btn btn-ghost btn-circle btn-sm md:btn-md"
+                        onclick={toggleTheme}
+                        title={t('nav.theme')}
+                    >
+                        {theme() === 'dracula' ? <FiSun /> : <FiMoon />}
+                    </button>
+                    <a
+                        class="btn btn-ghost btn-circle btn-sm md:btn-md"
+                        href="https://github.com/fatihbtw/privch"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="GitHub"
+                    >
+                        <FiGithub />
+                    </a>
                 </div>
-                {/* mobile */}
-                <div class="md:hidden lg:hidden fixed z-30">
-                    <div class="btm-nav">
-                        <button onclick={() => navigate('/')}>
-                            <FiHome />
+            </div>
+            {/* mobile bottom nav */}
+            <div class="btm-nav z-40 border-t border-base-content/10 bg-base-100/95 backdrop-blur md:hidden">
+                <For each={links}>
+                    {(link) => (
+                        <button
+                            class={
+                                isActive(link.href) ? 'active text-primary' : ''
+                            }
+                            onclick={() => navigate(link.href)}
+                        >
+                            <link.icon />
+                            <span class="btm-nav-label text-xs">
+                                {t(link.label)}
+                            </span>
                         </button>
-                        <button onclick={() => navigate('/explore')}>
-                            <FiCompass />
-                        </button>
-                        <button onclick={() => navigate('/favorites')}>
-                            <FiHeart />
-                        </button>
-                        <button onclick={() => navigate('/settings')}>
-                            <FiSettings />
-                        </button>
-                        <button onclick={toggleTheme}>
-                            {theme() === 'dracula' ? <FiSun /> : <FiMoon />}
-                        </button>
-                    </div>
-                </div>
-            </Show>
+                    )}
+                </For>
+            </div>
         </>
     );
 };
 
-export default navBar;
+export default NavBar;

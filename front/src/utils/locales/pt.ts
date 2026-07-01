@@ -3,6 +3,7 @@ export default {
     'nav.favorites': 'Favoritos',
     'nav.settings': 'Configurações',
     'nav.theme': 'Tema',
+    'nav.home': 'Início',
 
     'home.searchLabel': 'Buscar',
     'home.placeholder': 'URL, nome, vod, clip...',
@@ -12,6 +13,8 @@ export default {
     'home.yourFavorites': 'Seus favoritos',
     'home.trendingNow': 'Em alta agora',
     'home.seeAll': 'Ver tudo',
+    'home.tagline':
+        'Assista à Twitch com privacidade — sem anúncios, sem conta, sem rastreamento.',
 
     'common.live': 'Ao vivo',
     'common.offline': 'Offline',
@@ -46,6 +49,10 @@ export default {
     'settings.playbackSpeedHint':
         'Aplica-se apenas a VODs, streams ao vivo não podem ser acelerados.',
     'settings.save': 'Salvar',
+    'settings.saved': 'Salvo!',
+    'settings.sectionAppearance': 'Aparência',
+    'settings.sectionPlayback': 'Reprodução',
+    'settings.sectionGeneral': 'Geral',
 
     'favorites.exportImport': 'Exportar / Importar',
     'favorites.yourCode': 'Seu código de favoritos',
@@ -56,8 +63,7 @@ export default {
     'favorites.empty': 'Você não segue nenhum canal nos seus favoritos',
 
     'explore.title': 'Explorar',
-    'explore.unavailable':
-        'Streams em alta não estão disponíveis no momento.',
+    'explore.unavailable': 'Streams em alta não estão disponíveis no momento.',
     'explore.refresh': 'Atualizar',
     'explore.categories': 'Categorias',
     'explore.allCategories': 'Todas',

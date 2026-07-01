@@ -22,9 +22,7 @@ const VodsContainer: Component<{
                 >
                     <option value="ARCHIVE">{t('filters.archives')}</option>
                     <option value="UPLOAD">{t('filters.uploads')}</option>
-                    <option value="HIGHLIGHT">
-                        {t('filters.highlights')}
-                    </option>
+                    <option value="HIGHLIGHT">{t('filters.highlights')}</option>
                     <option value="ALL">{t('filters.all')}</option>
                 </select>
             </div>

@@ -3,6 +3,7 @@ export default {
     'nav.favorites': 'Favoris',
     'nav.settings': 'Paramètres',
     'nav.theme': 'Thème',
+    'nav.home': 'Accueil',
 
     'home.searchLabel': 'Recherche',
     'home.placeholder': 'URL, nom, vod, clip...',
@@ -12,6 +13,8 @@ export default {
     'home.yourFavorites': 'Tes favoris',
     'home.trendingNow': 'Tendances actuelles',
     'home.seeAll': 'Tout voir',
+    'home.tagline':
+        'Regardez Twitch en privé — sans pubs, sans compte, sans pistage.',
 
     'common.live': 'En direct',
     'common.offline': 'Hors ligne',
@@ -20,7 +23,7 @@ export default {
     'settings.title': 'Paramètres',
     'settings.quality': 'Qualité de stream préférée',
     'settings.qualityHint':
-        "Utilisé quand la qualité sélectionnée est disponible pour un stream. Sinon, retombe automatiquement sur Source.",
+        'Utilisé quand la qualité sélectionnée est disponible pour un stream. Sinon, retombe automatiquement sur Source.',
     'settings.qualitySource': 'Source (Max)',
     'settings.theme': 'Thème',
     'settings.themeDark': 'Sombre',
@@ -38,7 +41,7 @@ export default {
         'Les notifications ont été bloquées dans le navigateur. Autorise-les dans les paramètres du navigateur.',
     'settings.audioOnly': 'Mode audio seul',
     'settings.audioOnlyHint':
-        "Joue les streams en audio uniquement – économise la bande passante et continue en arrière-plan sur mobile.",
+        'Joue les streams en audio uniquement – économise la bande passante et continue en arrière-plan sur mobile.',
     'settings.showSuggestions': 'Afficher les chaînes suggérées',
     'settings.showSuggestionsHint':
         'Masque la barre latérale des chaînes similaires sur la page du stream si désactivé.',
@@ -46,6 +49,10 @@ export default {
     'settings.playbackSpeedHint':
         "S'applique uniquement aux VODs, les streams en direct ne peuvent pas être accélérés.",
     'settings.save': 'Enregistrer',
+    'settings.saved': 'Enregistré !',
+    'settings.sectionAppearance': 'Apparence',
+    'settings.sectionPlayback': 'Lecture',
+    'settings.sectionGeneral': 'Général',
 
     'favorites.exportImport': 'Exporter / Importer',
     'favorites.yourCode': 'Ton code de favoris',
@@ -53,11 +60,11 @@ export default {
     'favorites.importWarning': 'Ceci écrasera tes favoris précédents !',
     'favorites.import': 'Importer',
     'favorites.close': 'Fermer',
-    'favorites.empty': "Tu ne suis aucune chaîne dans tes favoris",
+    'favorites.empty': 'Tu ne suis aucune chaîne dans tes favoris',
 
     'explore.title': 'Explorer',
     'explore.unavailable':
-        "Les streams tendance ne sont pas disponibles pour le moment.",
+        'Les streams tendance ne sont pas disponibles pour le moment.',
     'explore.refresh': 'Actualiser',
     'explore.categories': 'Catégories',
     'explore.allCategories': 'Tout',
@@ -95,5 +102,5 @@ export default {
     'filters.lastWeek': 'Dernière semaine',
     'filters.lastMonth': 'Dernier mois',
     'filters.allTime': 'Toujours',
-    'filters.emptyResult': "Rien ici. Essaie un autre filtre ?",
+    'filters.emptyResult': 'Rien ici. Essaie un autre filtre ?',
 };

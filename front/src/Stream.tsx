@@ -69,8 +69,8 @@ const Stream: Component = () => {
         streamUrl = `${instanceBaseUrl}/api/stream/${params.username}${queryString}`,
         base64encode = (content: string) => btoa(content);
     let hlsInstance: Hls,
-        videoRef: HTMLVideoElement,
-        chatScroll: HTMLDivElement;
+        videoRef!: HTMLVideoElement,
+        chatScroll!: HTMLDivElement;
 
     if (!Hls.isSupported()) setHlsSuportStatus(false);
 
@@ -136,9 +136,7 @@ const Stream: Component = () => {
                                             })`
                                           : ''
                                   }`
-                                : `${lvl.height}p${
-                                      fps && fps > 30 ? fps : ''
-                                  }`;
+                                : `${lvl.height}p${fps && fps > 30 ? fps : ''}`;
 
                         return {
                             label,
@@ -315,7 +313,7 @@ const Stream: Component = () => {
 
     return (
         <>
-            <Nav isHome={false} />
+            <Nav />
             <Show when={isReady() == false}>
                 <div class="flex justify-center items-center h-screen flex-col">
                     <span class="loading loading-spinner text-secondary"></span>
@@ -475,9 +473,7 @@ const Stream: Component = () => {
                                                 <FiMaximize />
                                             )}
                                         </button>
-                                        <Show
-                                            when={qualityLevels().length > 0}
-                                        >
+                                        <Show when={qualityLevels().length > 0}>
                                             <QualitySelector
                                                 levels={qualityLevels()}
                                                 current={currentQuality()}

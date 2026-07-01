@@ -1,11 +1,11 @@
 services:
-  privch:
-    image: ghcr.io/fatihbtw/privch:latest
-    restart: unless-stopped
-    ports:
-      - '3000:3000'
-    environment:
-      # CLIENTID:
-      # USERAGENT:
-      # INSTANCE_URL:
-      NODE_ENV: production
+    privch:
+        image: ghcr.io/fatihbtw/privch:latest
+        restart: unless-stopped
+        ports:
+            - '3000:3000'
+        environment:
+            # CLIENTID:
+            # USERAGENT:
+            # INSTANCE_URL:
+            NODE_ENV: production

@@ -22,9 +22,7 @@ const ClipsContainer: Component<{
                 >
                     <option value="LAST_DAY">{t('filters.lastDay')}</option>
                     <option value="LAST_WEEK">{t('filters.lastWeek')}</option>
-                    <option value="LAST_MONTH">
-                        {t('filters.lastMonth')}
-                    </option>
+                    <option value="LAST_MONTH">{t('filters.lastMonth')}</option>
                     <option value="ALL_TIME">{t('filters.allTime')}</option>
                 </select>
             </div>

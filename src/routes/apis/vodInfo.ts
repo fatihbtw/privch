@@ -19,7 +19,7 @@ export default {
                     return res.status(400).json({ invalid: true });
 
                 const loginName = await fetchName(id);
-                
+
                 if (loginName.valid == false)
                     return res.status(400).json({ invalid: true });
 

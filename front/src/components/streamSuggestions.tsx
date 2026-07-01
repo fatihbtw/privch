@@ -34,7 +34,7 @@ const StreamSuggestions: Component<{ username: string }> = (props) => {
                         >
                             <img
                                 class="w-10 h-10 rounded-full"
-                                src={channel.avatar}
+                                src={`/api/proxy?url=${btoa(channel.avatar)}`}
                             />
                             <div class="overflow-hidden">
                                 <div class="truncate font-medium">

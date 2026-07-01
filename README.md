@@ -6,30 +6,40 @@ Privch (**Priv**ate + **T**witch) is a privacy-focused, ad-free alternative fron
 
 ![Privch homepage](docs/screenshot.png)
 
+## Screenshots
+
+|                   Explore                    |                    Settings                    |
+| :------------------------------------------: | :--------------------------------------------: |
+| ![Explore page](docs/screenshot-explore.png) | ![Settings page](docs/screenshot-settings.png) |
+
+|                Light theme                |                        Mobile                        |
+| :---------------------------------------: | :--------------------------------------------------: |
+| ![Light theme](docs/screenshot-light.png) | <img src="docs/screenshot-mobile.png" width="300" /> |
+
 ## Features
 
-- **No trackers** — all media and API requests go through the server, not your browser directly to Twitch.
-- **Twitch ad blocker built in** — Twitch's stitched-in ad segments are stripped from the HLS playlist server-side, so streams play with no ads, no pre-rolls, and no mid-rolls.
-- **Follow channels without an account** — favorites are stored in `localStorage`, with JSON export/import, no sign-up required.
-- **Adjustable stream quality** — picks from the qualities actually available in the stream (including native high-bitrate "Source"), remembers your preference.
-- **Resizable chat panel** — drag to resize the chat box to whatever size fits your layout.
-- **Channel suggestions** — see other live channels in the same category as the one you're watching, with live viewer counts.
-- **Explore page** — browse currently trending/top live channels across all categories.
-- **Theater mode** — widen the video and move chat below it, like YouTube.
-- **Live chat** — proxied via WebSocket, no separate Twitch login needed.
-- **Customizable homepage** — show the search box or a live-status dashboard of your favorites on `/`.
-- **Live notifications for favorites** — opt-in browser notification when a followed channel goes live, polled client-side, no server/account involved.
-- **Audio-only mode** — plays just the audio track to save bandwidth and keep playing in the background on mobile.
-- **Dark/light theme toggle** — persisted locally, no flash on load.
-- **Player preferences** — remembers volume, lets you hide the suggested-channels sidebar, and set a default VOD playback speed.
-- **Multi-language UI** — English, German, Spanish, French, Portuguese (BR), Russian, Turkish, Polish. Manually selected in Settings, no browser/region auto-detection.
-- **Open-source** — AGPLv3, inspect, modify, and self-host freely.
+-   **No trackers** — all media and API requests go through the server, not your browser directly to Twitch.
+-   **Twitch ad blocker built in** — Twitch's stitched-in ad segments are stripped from the HLS playlist server-side, so streams play with no ads, no pre-rolls, and no mid-rolls.
+-   **Follow channels without an account** — favorites are stored in `localStorage`, with JSON export/import, no sign-up required.
+-   **Adjustable stream quality** — picks from the qualities actually available in the stream (including native high-bitrate "Source"), remembers your preference.
+-   **Resizable chat panel** — drag to resize the chat box to whatever size fits your layout.
+-   **Channel suggestions** — see other live channels in the same category as the one you're watching, with live viewer counts.
+-   **Explore page** — browse currently trending/top live channels across all categories.
+-   **Theater mode** — widen the video and move chat below it, like YouTube.
+-   **Live chat** — proxied via WebSocket, no separate Twitch login needed.
+-   **Customizable homepage** — show the search box or a live-status dashboard of your favorites on `/`.
+-   **Live notifications for favorites** — opt-in browser notification when a followed channel goes live, polled client-side, no server/account involved.
+-   **Audio-only mode** — plays just the audio track to save bandwidth and keep playing in the background on mobile.
+-   **Dark/light theme toggle** — persisted locally, no flash on load.
+-   **Player preferences** — remembers volume, lets you hide the suggested-channels sidebar, and set a default VOD playback speed.
+-   **Multi-language UI** — English, German, Spanish, French, Portuguese (BR), Russian, Turkish, Polish. Manually selected in Settings, no browser/region auto-detection.
+-   **Open-source** — AGPLv3, inspect, modify, and self-host freely.
 
 ## Tech stack
 
-- Backend: TypeScript + Node.js (Express) — `src/`
-- Frontend: SolidJS + TailwindCSS + DaisyUI — `front/`
-- Player: hls.js
+-   Backend: TypeScript + Node.js (Express) — `src/`
+-   Frontend: SolidJS + TailwindCSS + DaisyUI — `front/`
+-   Player: hls.js
 
 ## Running it yourself
 
@@ -44,9 +54,9 @@ node build/src/index.js
 
 The server listens on port `3000`. Optional environment variables (see `.env.example`):
 
-- `CLIENTID` — override the Twitch client ID used for API requests.
-- `USERAGENT` — override the user agent sent to Twitch.
-- `INSTANCE_URL` — base URL used for embedded clip links.
+-   `CLIENTID` — override the Twitch client ID used for API requests.
+-   `USERAGENT` — override the user agent sent to Twitch.
+-   `INSTANCE_URL` — base URL used for embedded clip links.
 
 ### Docker
 

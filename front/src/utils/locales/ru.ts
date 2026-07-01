@@ -3,6 +3,7 @@ export default {
     'nav.favorites': 'Избранное',
     'nav.settings': 'Настройки',
     'nav.theme': 'Тема',
+    'nav.home': 'Главная',
 
     'home.searchLabel': 'Поиск',
     'home.placeholder': 'URL, имя, vod, клип...',
@@ -12,6 +13,8 @@ export default {
     'home.yourFavorites': 'Твои избранные',
     'home.trendingNow': 'Сейчас популярно',
     'home.seeAll': 'Смотреть все',
+    'home.tagline':
+        'Смотрите Twitch приватно — без рекламы, без аккаунта, без слежки.',
 
     'common.live': 'В эфире',
     'common.offline': 'Офлайн',
@@ -46,6 +49,10 @@ export default {
     'settings.playbackSpeedHint':
         'Применяется только к VOD, прямые трансляции нельзя ускорить.',
     'settings.save': 'Сохранить',
+    'settings.saved': 'Сохранено!',
+    'settings.sectionAppearance': 'Внешний вид',
+    'settings.sectionPlayback': 'Воспроизведение',
+    'settings.sectionGeneral': 'Общие',
 
     'favorites.exportImport': 'Экспорт / Импорт',
     'favorites.yourCode': 'Твой код избранного',

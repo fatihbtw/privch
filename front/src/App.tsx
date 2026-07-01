@@ -22,8 +22,7 @@ const App: Component = () => {
         const baseUrl = window.location.origin;
 
         async function pollFavorites() {
-            if (localStorage.getItem('privch_notifications') !== 'true')
-                return;
+            if (localStorage.getItem('privch_notifications') !== 'true') return;
             if (
                 typeof Notification === 'undefined' ||
                 Notification.permission !== 'granted'
@@ -42,9 +41,7 @@ const App: Component = () => {
 
             for (const ch of favorites) {
                 try {
-                    const res = await axios.get(
-                            `${baseUrl}/api/user/${ch}`
-                        ),
+                    const res = await axios.get(`${baseUrl}/api/user/${ch}`),
                         data = res.data?.data;
 
                     nextState[ch] = data?.live === true;
@@ -59,7 +56,8 @@ const App: Component = () => {
                                           data.avatar
                                       )}`
                                     : undefined,
-                        });
+                            }
+                        );
                     }
                 } catch {
                     nextState[ch] = prevState[ch] ?? false;
