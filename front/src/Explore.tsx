@@ -19,9 +19,9 @@ const Explore: Component = () => {
         [isAvailable, setAvailable] = createSignal(true),
         [isRefreshing, setIsRefreshing] = createSignal(false),
         [streams, setStreams] = createSignal<TrendingStream[]>([]),
-        [selectedCategory, setSelectedCategory] = createSignal<
-            string | null
-        >(null),
+        [selectedCategory, setSelectedCategory] = createSignal<string | null>(
+            null
+        ),
         baseUrl = window.location.origin;
 
     // ponytail: categories are derived from the already-fetched trending
@@ -129,8 +129,7 @@ const Explore: Component = () => {
                                         <li>
                                             <button
                                                 class={
-                                                    selectedCategory() ===
-                                                    game
+                                                    selectedCategory() === game
                                                         ? 'active'
                                                         : ''
                                                 }

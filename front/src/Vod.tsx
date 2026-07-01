@@ -50,7 +50,7 @@ const Vods: Component = () => {
         isDownloadEnabled = import.meta.env.VITE_ENABLE_EXPERIMENTAL === 'true',
         base64encode = (content: string) => btoa(content);
 
-    let hlsInstance: Hls, videoRef: HTMLVideoElement, scroll: HTMLDivElement;
+    let hlsInstance: Hls, videoRef!: HTMLVideoElement, scroll!: HTMLDivElement;
 
     if (!Hls.isSupported()) setHlsSuportStatus(false);
 

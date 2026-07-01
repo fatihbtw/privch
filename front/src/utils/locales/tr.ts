@@ -44,7 +44,7 @@ export default {
         'Devre dışı bırakıldığında yayın sayfasındaki benzer kanallar kenar çubuğunu gizler.',
     'settings.playbackSpeed': 'Varsayılan oynatma hızı (VOD)',
     'settings.playbackSpeedHint':
-        'Yalnızca VOD\'lar için geçerlidir, canlı yayınlar hızlandırılamaz.',
+        "Yalnızca VOD'lar için geçerlidir, canlı yayınlar hızlandırılamaz.",
     'settings.save': 'Kaydet',
 
     'favorites.exportImport': 'Dışa Aktar / İçe Aktar',

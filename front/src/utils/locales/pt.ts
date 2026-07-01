@@ -56,8 +56,7 @@ export default {
     'favorites.empty': 'Você não segue nenhum canal nos seus favoritos',
 
     'explore.title': 'Explorar',
-    'explore.unavailable':
-        'Streams em alta não estão disponíveis no momento.',
+    'explore.unavailable': 'Streams em alta não estão disponíveis no momento.',
     'explore.refresh': 'Atualizar',
     'explore.categories': 'Categorias',
     'explore.allCategories': 'Todas',

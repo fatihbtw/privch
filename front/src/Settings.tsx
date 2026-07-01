@@ -132,16 +132,12 @@ const Settings: Component = () => {
 
                 <div class="form-control mt-4">
                     <label class="label">
-                        <span class="label-text">
-                            {t('settings.homepage')}
-                        </span>
+                        <span class="label-text">{t('settings.homepage')}</span>
                     </label>
                     <select
                         class="select select-bordered"
                         value={homepage()}
-                        onChange={(e) =>
-                            setHomepage(e.currentTarget.value)
-                        }
+                        onChange={(e) => setHomepage(e.currentTarget.value)}
                     >
                         <option value="search">
                             {t('settings.homepageSearch')}

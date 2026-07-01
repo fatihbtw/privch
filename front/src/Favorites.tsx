@@ -186,7 +186,9 @@ const FavoritesPage: Component = () => {
                                                         {channel.displayName}{' '}
                                                         {channel.live ? (
                                                             <span class="badge badge-error ml-1">
-                                                                {t('common.live')}
+                                                                {t(
+                                                                    'common.live'
+                                                                )}
                                                             </span>
                                                         ) : (
                                                             <></>

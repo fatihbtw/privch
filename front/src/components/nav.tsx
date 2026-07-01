@@ -99,7 +99,11 @@ const navBar: Component<{ isHome: boolean }> = ({ isHome }) => {
                             </li>
                             <li>
                                 <button onclick={toggleTheme}>
-                                    {theme() === 'dracula' ? <FiSun /> : <FiMoon />}
+                                    {theme() === 'dracula' ? (
+                                        <FiSun />
+                                    ) : (
+                                        <FiMoon />
+                                    )}
                                 </button>
                             </li>
                         </ul>
@@ -140,11 +144,11 @@ const navBar: Component<{ isHome: boolean }> = ({ isHome }) => {
                                     <li>
                                         <button onclick={toggleTheme}>
                                             {theme() === 'dracula' ? (
-                                            <FiSun />
-                                        ) : (
-                                            <FiMoon />
-                                        )}{' '}
-                                        {t('nav.theme')}
+                                                <FiSun />
+                                            ) : (
+                                                <FiMoon />
+                                            )}{' '}
+                                            {t('nav.theme')}
                                         </button>
                                     </li>
                                 </ul>
@@ -175,7 +179,11 @@ const navBar: Component<{ isHome: boolean }> = ({ isHome }) => {
                                 </li>
                                 <li>
                                     <button onclick={toggleTheme}>
-                                        {theme() === 'dracula' ? <FiSun /> : <FiMoon />}
+                                        {theme() === 'dracula' ? (
+                                            <FiSun />
+                                        ) : (
+                                            <FiMoon />
+                                        )}
                                     </button>
                                 </li>
                             </ul>

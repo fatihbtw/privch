@@ -56,8 +56,7 @@ export default {
     'favorites.empty': 'Nie obserwujesz jeszcze żadnych kanałów',
 
     'explore.title': 'Odkrywaj',
-    'explore.unavailable':
-        'Popularne streamy są obecnie niedostępne.',
+    'explore.unavailable': 'Popularne streamy są obecnie niedostępne.',
     'explore.refresh': 'Odśwież',
     'explore.categories': 'Kategorie',
     'explore.allCategories': 'Wszystkie',

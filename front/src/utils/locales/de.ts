@@ -50,8 +50,7 @@ export default {
     'favorites.exportImport': 'Export / Import',
     'favorites.yourCode': 'Dein Favoriten-Code',
     'favorites.importCode': 'Favoriten-Code importieren',
-    'favorites.importWarning':
-        'Dies überschreibt deine bisherigen Favoriten!',
+    'favorites.importWarning': 'Dies überschreibt deine bisherigen Favoriten!',
     'favorites.import': 'Importieren',
     'favorites.close': 'Schließen',
     'favorites.empty': 'Du folgst noch keinen Channels',
@@ -95,6 +94,5 @@ export default {
     'filters.lastWeek': 'Letzte Woche',
     'filters.lastMonth': 'Letzter Monat',
     'filters.allTime': 'Gesamt',
-    'filters.emptyResult':
-        'Hier ist nichts. Versuch einen anderen Filter?',
+    'filters.emptyResult': 'Hier ist nichts. Versuch einen anderen Filter?',
 };
